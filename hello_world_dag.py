@@ -17,7 +17,7 @@ with DAG(dag_id="hello_world_dag",
         task_id="hello_world",
         python_callable=helloWorld)
 
-with DAG(dag_id="bash_dag",
+with DAG(dag_id="bash_dag",  # Use a different dag_id
          start_date=datetime(2023, 10, 31),
          schedule_interval="@hourly",
          catchup=False) as dag:
@@ -26,3 +26,4 @@ with DAG(dag_id="bash_dag",
         task_id="bash_task",
         bash_command='echo "Here is the message: \'{{ dag_run.conf["message"] if dag_run else "" }}\'"',
     )
+
